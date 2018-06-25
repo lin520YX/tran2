@@ -1,0 +1,36 @@
+<! DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>trans5</title>
+    </head>
+    <body>
+        <script>
+             //    broswer storage destroy
+            // 对象数据类型和函数数据类型定义时候都会开辟堆内存，如果外面有个变量占用了这个堆内存那么就不销毁了
+            obj=null;//把引用的变量值赋值为null就能销毁了,如果没有被占用，浏览器会主动销毁；
+
+            // 栈内存：
+            // 全局作用域（关掉页面），私有作用域（function 执行时候,执行完销毁）
+            // 特殊情况：私有作用域中的部分内存被外部占用，那么就无法销毁
+            // 1.function 执行返回一个引用的值，并且函数之外被用到了，那么不销毁
+            // function fn(){
+            //     var _n=1000;
+            //     return function(){
+            //         _n++
+            //     }
+            // }
+            // var f=fn();
+            // f();
+            // 2.自执行函数的作用域也不销毁
+            // 3.延迟销毁
+             // function fn(){
+            //     var _n=1000;
+            //     return function(){
+            //         _n++
+            //     }
+            // }
+            // fn()();
+        </script>
+    </body>
+</html>

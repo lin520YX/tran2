@@ -1,0 +1,47 @@
+<! DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>trans2</title>
+    </head>
+    <body>
+        <script>
+            // global scope 声明的变量是global变量；
+            // 如何区分 global/private
+            // 在私有作用域中声明的变量，和函数形参都是私有变量
+        // 作用域链 //  在私有作用域中我们执行遇到了一个变量，需要确认他是否是私有变量，如果是，那他就和其他作用域下的没有任何关系
+            // 如果不是那他就会一直查找，直到window
+            console.log(total)//undefined
+            var total=0;
+            function fn(_n1,_n2){
+                console.log(total)//=>p1
+                var total =_n1+_n2;
+                console.log(total)
+            }
+            fn(100,200)//->形成一个私有的作用域（栈内存->执行代码）
+                       //->如果有形参先赋值
+                       //->预解释
+                       //->从上倒下执行
+                    // 函数形成了一个private scope保护内部变量 不受外界干扰（闭包）
+                    // eg:_n1=100,_n2=200
+                    //p1// var total
+                    // console.log(total)//undefined
+                    // total=300
+                    // console.log(total)//300
+                    
+            console.log(total)//0
+
+            // 声明 total fn=>x1（堆内存）
+            /**************/
+            // console.log(total)
+            //     var total =_n1+_n2;
+            //     console.log(total)
+            /********/  
+
+            
+            
+
+
+        </script>
+    </body>
+</html>

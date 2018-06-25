@@ -1,0 +1,27 @@
+<! DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>trans4</title>
+    </head>
+    <body>
+        <script>
+           var a=1;
+           function fn(){
+            //   当前作用域
+               var a=2
+               return function (){
+                   console.log(a)
+               }
+           }
+           var f=fn();
+           f();//2
+           +function(){
+               var a=3
+               fn();//2
+           }()
+        //    如何查找当前作用域的上级scope
+        // 看函数在那个作用域定义的 这个作用域就是上级作用域
+        </script>
+    </body>
+</html>

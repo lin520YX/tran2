@@ -1,0 +1,39 @@
+<! DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>trans1</title>
+    </head>
+    <body>
+        <script>
+            // es5
+            // js的数据类型 基本数据类型(按照值) 引用数据类型（按照地址）
+            // 基本数据类型 number string boolean null undefined symbol(es6)
+            // 引用数据类型 object function
+
+
+
+            // 加载顺序
+            // broswer ->(global/window scope)[运行js代码]->(堆内存/栈内存)->(内存销毁)
+
+            var num=1;
+            // broswer 默认把所有（var function）提前声明或者定义;
+            //declare 
+            var num //在global scope中存在num的变量
+            //defined 
+            num=1; //变量赋值
+            // 但是var/function 在解释的时候操作不一样
+            // var只是声明
+            // function 解释阶段declare和defined 都完成了
+            // 预解释只发生在当前作用域下
+            function aa(){
+                var aa=1;//函数执行时才会进行解释
+            }
+            // 内存的分类
+            // 1.堆内存->存储引用数据类型的值
+            // 2.栈内存->public scope/private scope
+
+
+        </script>
+    </body>
+</html>

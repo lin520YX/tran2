@@ -1,0 +1,41 @@
+<! DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>trans3</title>
+    </head>
+    <body>
+        <script>
+            // in 关键字  判断对象所属关系
+            // 在于解释中不论条件if。。。是否成立都要变量提前声明
+            // 函数的三种表达方式
+            // 1.function fn()
+
+
+
+            // }
+            // 2.var fn=function(){
+
+            // }
+            // 3.(function(){})()
+
+
+
+
+            //  1和2去区别在于2声明 1声明定义
+
+            // 3在全局作用域下不进行与解释，代码执行的时候一起执行了
+            fn() //2
+            function fn(){console.log(1)}  
+            fn() //2
+            var fn=10
+            fn(); //报错之后不执行
+            function fn(){console.log(2)}
+            fn();
+                // 1.fn->declare and defined
+                // 2.var fn(no declare)
+                // 3.no declare between defined
+
+        </script>
+    </body>
+</html>
