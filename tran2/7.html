@@ -1,0 +1,25 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>trans7</title>
+</head>
+
+<body>
+    <script>
+        //    instanceof 方法要求开发者明确地确认对象为某特定类型
+        //     var oStringObject = new Number(1);
+        // console.log(oStringObject instanceof Number); 
+
+        Object.prototype.a = function () { }
+        var obj = { name: 1 };
+        for (var attr in obj) {
+            if (obj.propertyIsEnumerable(attr)) {
+                console.log(attr)
+            }
+        }
+    </script>
+</body>
+
+</html>
