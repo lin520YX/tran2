@@ -10,12 +10,16 @@
 
             }
             // 每一个函数数据类型都有prototype的属性，并且这个属性是一个对象数据类型的值
+            console.log(c.constructor==C)
             // 浏览器会给prototype加一个constructor，属性是函数本身
             var c= new C();
             C.prototype.key=function(){
 
             }
-
+         console.log(c)
+        //  每个对象都有 __proto__ 属性，但只有函数对象才有 prototype 属性
+        // JS 在创建对象（不论是普通对象还是函数对象）的时候，都有一个叫做__proto__ 的内置属性，用于指向创建它的构造函数的原型对象。
+        c.__proto__=C.prototype;
 
         </script>
     </body>
