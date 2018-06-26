@@ -1,0 +1,29 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>trans13</title>
+</head>
+
+<body>
+    <script>
+        //    冒充对象继承
+        function A(){
+            this.x=100
+        }
+        A.prototype.getX=function(){
+
+        }
+        function B(){
+            var tem= new A;
+            // 克隆->子类私有
+            for(var key in tem){
+                    this[key]=tem[key]
+            }
+            tem=null;
+        }
+    </script>
+</body>
+
+</html>

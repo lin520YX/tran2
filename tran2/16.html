@@ -1,0 +1,19 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>trans16</title>
+</head>
+
+<body>
+    <script>
+        function argFn(){
+            arguments.__proto__=Array.prototype
+            return eval(arguments.join('+')/arguments.length)
+        }
+        
+    </script>
+</body>
+
+</html>

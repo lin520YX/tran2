@@ -1,0 +1,28 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>trans14</title>
+</head>
+
+<body>
+    <script>
+        //   混合继承
+        function A(){
+            this.x=100
+        }
+        A.prototype.getX=function(){
+
+        }
+        function B(){
+            A.call(this)
+        }
+        B.prototype=new A()
+        B.prototype.constructor=B;
+        var n=new B();
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>trans15</title>
+</head>
+
+<body>
+    <script>
+        //   寄生组合继承
+        function A(){
+            this.x=100
+        }
+        A.prototype.getX=function(){
+
+        }
+        function B(){
+            A.call(this)
+        }
+        B.prototype=Object.create(A.prototype)
+        B.prototype.constructor=B;
+        var n=new B();
+        
+    </script>
+</body>
+
+</html>
