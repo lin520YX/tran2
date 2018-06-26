@@ -1,0 +1,26 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>call继承</title>
+</head>
+
+<body>
+    <script>
+            function A(){
+                this.x=100;
+            }
+            A.prototype.getX=function(){
+                console.log(this.x)
+            }
+            function B(){
+                A.call(this)
+            }
+            var n= new B;
+            console.log(n.x)
+            // A(父类的私有属性和方法，给子类私有的)
+    </script>
+</body>
+
+</html>
