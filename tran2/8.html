@@ -1,0 +1,39 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>trans8</title>
+</head>
+
+<body>
+    <script>
+   
+        function Fn(){
+
+        }
+        var obj={
+            constructor:Fn,
+            get:function(){
+
+            }
+        }
+        Fn.prototype=obj
+        var f= new Fn();
+        var obj2=Object.create(obj)//ie不支持
+        console.log(obj2)
+         //    Object.create(pro)
+    //   创建一个新的对象
+    // 时还是要把pro作为这个对象的原型
+    // defined ObjectCreate 
+    // function ObjectCreate(obj){
+    //     function Fn(){
+
+    //     }
+    //     Fn.prototype=obj;
+    //     return new Fn()
+    // }
+    </script>
+</body>
+
+</html>
