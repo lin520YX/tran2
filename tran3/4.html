@@ -1,0 +1,21 @@
+<! DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>trans4</title>
+    </head>
+    <body>
+        <script>
+           
+    //    求去平均值
+            function avg(){
+               var ary=Array.prototype.slice.call(arguments).sort(function(a,b){
+                return a-b
+               })
+               ary.shift();
+               ary.pop();
+               return eval(ary.join('+')/ary.length).toFixed(2)
+            }
+        </script>
+    </body>
+</html>

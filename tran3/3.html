@@ -25,7 +25,8 @@
             }
             // 字符串拼接
             eval("Math.max("+ary.toString()+")")
-       
+            // apply
+            Math.max.apply(null,ary);
         </script>
     </body>
 </html>
