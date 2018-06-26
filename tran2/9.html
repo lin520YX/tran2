@@ -1,0 +1,40 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>原型继承</title>
+</head>
+
+<body>
+    <script>
+        function Fn1() {
+        
+        }
+        Fn1.prototype = {
+            constructor: Fn1,
+            get:function(){
+                console.log(1)
+            }
+        }
+        function Fn2() {
+
+        }
+        Fn2.prototype = {
+            constructor: Fn2,
+            get2:function(){
+                console.log(2)
+            }
+        }
+        Fn2.prototype = new Fn1()
+        function F3(){
+
+        }
+        F3.prototype=new Fn2();
+        var f=new F3()
+        f.get()
+        // 父类公有的私有的 变成子类公有的
+    </script>
+</body>
+
+</html>
