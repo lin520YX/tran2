@@ -1,0 +1,31 @@
+<! DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>trans3</title>
+    </head>
+    <body>
+        <script>
+            // 数组最大值
+            var ary=[1,2,3];
+            // 1.sort 第一个和最后一个
+            // Math.max(1,2,3)
+            // Math.min(1,2,3)
+
+            // 假设法
+            var max=ary[0];
+            var min=ary[ary.length-1];
+            for(var i=0;i<ary.length;i++){
+                if(ary[i]>max){
+                    max=ary[i]
+                }
+                if(ary[i]<min){
+                    min=ary[i]
+                }
+            }
+            // 字符串拼接
+            eval("Math.max("+ary.toString()+")")
+       
+        </script>
+    </body>
+</html>
