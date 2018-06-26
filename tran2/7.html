@@ -15,7 +15,7 @@
         Object.prototype.a = function () { }
         var obj = { name: 1 };
         for (var attr in obj) {
-            if (obj.propertyIsEnumerable(attr)) {
+            if (obj.propertyIsEnumerable(attr)&&obj.hasOwnProperty(attr)) {
                 console.log(attr)
             }
         }
