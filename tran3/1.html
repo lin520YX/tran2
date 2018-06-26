@@ -1,0 +1,24 @@
+<! DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>trans1</title>
+    </head>
+    <body>
+        <script>
+        //   call 改变this指针
+        function fn(a){
+            console.log(a)
+            console.log(this)
+        }
+        fn.call()//window
+        fn.call(null)//window
+        fn.call(undefined)//window
+
+        // 严格模式下arguments 没有映射关系
+        fn.call()//undefind
+        fn.call(null)//null
+        fn.call(undefined)//undefined
+        </script>
+    </body>
+</html>
