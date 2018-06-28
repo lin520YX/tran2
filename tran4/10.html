@@ -1,0 +1,23 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>trans10</title>
+</head>
+
+<body>
+    <script>
+        // 将你的离职时间换成中文显示
+        var str='20180622';
+        var ary=['零','壹','贰','叁','肆','伍','陆','柒','捌','玖'];
+        str=str.replace(/\d/g,function(){
+            var cur=arguments[0]
+            return ary[cur]
+        })
+        console.log(str)
+            
+    </script>
+</body>
+
+</html>
