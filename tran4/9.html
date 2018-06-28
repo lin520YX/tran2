@@ -1,0 +1,30 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>trans9</title>
+</head>
+
+<body>
+    <script>
+        // var str='cjsb';
+        // str.replace('sb','傻逼');
+
+        // var str='cjsbcjsb';
+        // str.replace(/sb/g,'傻逼');
+
+        // replace 第一项的值是一个正则的原理
+        // 1.和exec一样捕获到所有的内容，然后替换。g全部替换
+    var str = 'cjsbcjsb';
+    str.replace(/sb/g, function(){
+        // 执行两次
+        // arguments 可以通过这个获取分组内容
+       return  '傻逼'
+    });
+    // 匿名函数执行次数和捕获次数有关系
+
+    </script>
+</body>
+
+</html>
