@@ -1,0 +1,36 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>trans12</title>
+</head>
+
+<body>
+    <script>
+                var str = '{0}年{1}月{2}日 {3}时{4}分{5}秒';
+                // var reg=/^(\d{4})[-/](\d{1,2})[-/](\d{1,2})\s+(\d{1,2}):(\d{1,2}):(\d{1,2})$/;
+                var date = '2018-06-28 17:00:00';
+                var dataAry = date.match(/\d+/g);
+                str = str.replace(/{(\d+)}/g, function () {
+                    return ary[arguments[1]]
+                })
+
+
+                // defined format
+
+
+                String.prototype.myFormat=function(temp){
+                    var temp=temp||'{0}年{1}月{2}日 {3}时{4}分{5}秒';
+                    var dataAry=this.match(/(\d+)/g);
+                    return temp.replace(/{(\d+)}/g,function(){
+                        var cur=arguments[1];
+                        cur=cur>0&&cur<10?'0'+cur:cur
+                        return cur
+                    })
+
+                }
+    </script>
+</body>
+
+</html>
