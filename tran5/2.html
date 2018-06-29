@@ -1,0 +1,59 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>trans2</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #box {
+        margin: 100px;
+        padding: 30px;
+        width: 200px;
+        height: 200px;
+        border: 10px solid green;
+        line-height: 20px;
+    }
+</style>
+
+<body>
+    <div id="box" name='zhonghengqiangongzi' class='huanqian'>
+        在六月这个充满情感的月份，我们从6月4日起至6月24日的父爱如山主题征文活动已经正式截止。本次征文共征得110篇优秀文章，认真的看完了所有小伙伴的文章，真的太感动太感人，非常感谢各位商友的参与！
+    </div>
+    <script>
+        //    window.getComputedStyle获取样式
+        function $(id) {
+            return document.getElementById(id)
+        }
+        var k = $('box')
+        console.log(window.getComputedStyle(k, null))
+        //    ie k.currentStyle['width']
+
+
+        function getCss(curEle, attr) {
+            var val = null, reg = null;
+            if ('getComputedStyle' in window) {
+                val = curEle.getComputedStyle(curEle, null)[attr];
+            } else {
+                if (attr === 'filter') {
+
+                    val = curEle.currentStyle['filter'];
+                    reg = /^alpha\(opacity=(\d+(\.\d+)?)\)/;
+                    val = reg.test(val) ? reg.exec(val)[1] / 100 : 1;
+                }
+                else {
+                    val = curEle.currentStyle[attr];
+                }
+            }
+            reg = /^([+-]?\d+(\.\d+)?)(px|pt|rem|em)?$/i;
+            return reg.test(val) ? parseFloat(val) : val;
+        }
+    </script>
+</body>
+
+</html>
