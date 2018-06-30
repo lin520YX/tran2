@@ -1,0 +1,83 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>trans3</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    #outer {
+        width: 180px;
+        height: 180px;
+        padding: 50px;
+        border: 10px solid #000;
+        margin: 50px auto;
+        background: orange;
+    }
+    #inner {
+        width: 80px;
+        height: 80px;
+        padding: 50px;
+        border: 10px solid #000;
+        background: green;
+    }
+    #center {
+        width: 50px;
+        height: 50px;
+        border: 10px solid #000;
+        background:red;
+    }
+</style>
+
+<body>
+    <div id="outer">
+        <div id="inner">
+            <div id="center"></div>
+        </div>
+    </div>
+    <script>
+         function $(id) {
+            return document.getElementById(id)
+        }
+       var outer=$('outer');
+       var inner=$('inner');
+       var center=$('center');
+        outer.style.position='relative';
+        inner.style.position='relative';
+        console.log(center.offsetParent)
+        console.log(inner.offsetParent)
+        console.log(outer.offsetParent)
+
+
+    //    offsetParent 在同一平面中最外层元素是里面元素的父级参照物；
+    // 通过定位可以改变父级别参照absolute relative fixed
+    // offsetTop/offsetLeft 距离父级参照物的距离
+
+    function offset(curEle){
+        var totalLeft=curEle.offsetLeft;
+        var totalTop=curEle.offsetTop;
+        var par=curEle.offsetParent;
+        while(par){
+            // ie8 会自动加边
+            if(navigator.userAgent.indexOf('MSIE 8')===-1){
+                totalLeft+=par.clientLeft;
+                totalTop+=par.clientTop;
+            }
+            totalLeft+=par.offsetLeft;
+            totalLeft+=par.offsetLeft;
+            par=par.offsetParent;
+        }
+        return {
+            left:totalLeft,
+            top:totalTop
+        }
+    }
+
+    </script>
+</body>
+
+</html>
