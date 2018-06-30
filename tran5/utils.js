@@ -78,12 +78,54 @@ var utils=(function(){
         }
         return ary;
     }
+    function prev(curEle){
+        if(flag){
+            return curEle.previousElementSibling;
+        }
+        var res=curEle.priviousSibling;//上一个兄弟节点
+        while(res&&res.nodeType==1){
+            res=res.priviousSibling
+        }
+        return res;
+    }
+    function next(curEle){
+        if(flag){
+            return curEle.nextElementSibling;
+        }
+        var res=curEle.nextSibling;//上一个兄弟节点
+        while(res&&res.nodeType==1){
+            res=res.nextSibling
+        }
+        return res;
+    }
+    function prevAll(curEle){
+        var ary=[];
+        var cur=this.prev(curEle)
+        while(cur){
+            ary.unshift(cur)
+            cur=this.prev(cur)
+        }
+        return ary;
+    }
+    function nextAll(curEle){
+        var ary=[];
+        var cur=this.next(curEle)
+        while(cur){
+            ary.push(cur)
+            cur=this.next(cur)
+        }
+        return ary;
+    }
     return {
         listToArray:listToArray,
         jsonParse:jsonParse,
         win:win,
         offset:offset,
         getCss:getCss,
-        getChildren:getChildren
+        getChildren:getChildren,
+        prev:prev,
+        next:next,
+        prevAll:prevAll,
+        nextAll:nextAll
     }
 })()
