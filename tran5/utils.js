@@ -232,6 +232,17 @@ var utils = (function () {
             }
         }
     }
+    function css(curEle) {
+        var arg2 = arguments[1];
+        if (typeof arg2 === 'string') {
+            var arg3 = arguments[2];
+            if (typeof arg3 == 'undefined') {
+                return this.getCss(curEle, arg2);
+            } else {
+                return this.setCss(curEle, arg2, arg3)
+            }
+        }
+    }
     return {
         listToArray: listToArray,
         jsonParse: jsonParse,
@@ -257,6 +268,7 @@ var utils = (function () {
         removeClass: removeClass,
         getByClass: getByClass,
         setCss: setCss,
-        setGroupCss: setGroupCss
+        setGroupCss: setGroupCss,
+        css: css
     }
 })()
