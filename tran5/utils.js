@@ -159,6 +159,52 @@ var utils=(function(){
             oldEle.parentNode.appendChild(newEle)
         }
     }
+    function hasClass(curEle,cName){
+            var cName=cName.replace(/(^\s+)|(\s+$)/,'');
+            var reg=new RegExp('\\b'+cName+'\\b');
+            return reg.test(curEle.className)?true:false;
+    }
+    function addClass(curEle,strClass){
+        var aryClass=strClass.replace(/(^\s+)|(\s+$)/,'').spilt(/\s+/g);
+        for(var i=0;i<aryClass.length;i++){
+            if(!hasClass(curEle,aryClass[i])){
+                return curEle.className+=''+aryClass[i];
+            }
+        }
+    }
+    function removeClass(curEle,strClass){
+        var aryClass=strClass.replace(/(^\s+)|(\s+$)/,'').spilt(/\s+/g);
+        for(var i=0;i<aryClass.length;i++){
+            var reg=new RegExp('(^|\\s+)'+aryClass[i]+'(|\\s+$)');
+            if(hasClass(curEle,aryClass[i])){
+                return curEle.className=curEle.className.replace(reg,'').replace(/\s+/g,'').replace(/(^\s+)|(\s+$)/,'');
+            }
+        }
+    }
+    function getByClass(curEle,strClass){
+        var curEle=curEle||document;
+        if(flag){
+            return curEle.getElementsByClassName(strClass)
+        }
+        var strArray=strClass.replace(/(^\s+)|(\s+$)/,'').spilt('');
+        var nodeList=document.getElementsByTagName('*');
+        var ary=[];
+        for(var i=0;i<nodeList.length;i++){
+            var cur=nodeList[i];
+            var b=true;
+            for(var j=0;j<strArray.length;j++){
+                var reg=new RegExp('(^|\\s+)'+strArray[j]+'(|\\s+$)');
+                if(!reg.test(cur.className)){
+                    b=false;
+                    break;//结束循环 跳出循环体
+                }
+            }
+            if(b){
+                ary.push(cur)
+            }
+        }
+        return ary
+    }
     return {
         listToArray:listToArray,
         jsonParse:jsonParse,
@@ -178,6 +224,10 @@ var utils=(function(){
         appendChild:appendChild,
         prepend:prepend,
         insertBefore:insertBefore,
-        insertAfter:insertAfter
+        insertAfter:insertAfter,
+        hasClass:hasClass,
+        addClass:addClass,
+        removeClass:removeClass,
+        getByClass:getByClass
     }
 })()
