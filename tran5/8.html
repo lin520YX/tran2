@@ -1,0 +1,110 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>trans8</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    p {
+        position: absolute;
+        top: 1000px;
+        width: 400px;
+        height: 200px;
+        background: url('default.png')center center no-repeat #e1e1e1;
+    }
+
+    p img {
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        filter: alpha(opacity=100);
+    }
+</style>
+
+<body>
+    <p>
+        <img  imgsrc='saleNum.png' alt="">
+    </p>
+    <script>
+        function getCss(curEle, attr) {
+            var val = null, reg = null;
+            if ('getComputedStyle' in window) {
+                val = window.getComputedStyle(curEle, null)[attr];
+            } else {
+                if (attr === 'filter') {
+
+                    val = curEle.currentStyle['filter'];
+                    reg = /^alpha\(opacity=(\d+(\.\d+)?)\)/;
+                    val = reg.test(val) ? reg.exec(val)[1] / 100 : 1;
+                }
+                else {
+                    val = curEle.currentStyle[attr];
+                }
+            }
+            reg = /^([+-]?\d+(\.\d+)?)(px|pt|rem|em)?$/i;
+            return reg.test(val) ? parseFloat(val) : val;
+        }
+        function offset(curEle) {
+            var totalLeft = curEle.offsetLeft;
+            var totalTop = curEle.offsetTop;
+            var par = curEle.offsetParent;
+            while (par) {
+                // ie8 会自动加边
+                if (navigator.userAgent.indexOf('MSIE 8') === -1) {
+                    totalLeft += par.clientLeft;
+                    totalTop += par.clientTop;
+                }
+                totalLeft += par.offsetLeft;
+                totalLeft += par.offsetLeft;
+                par = par.offsetParent;
+            }
+            return {
+                left: totalLeft,
+                top: totalTop
+            }
+        }
+        function win(attr, value) {
+            if (value !== undefined) {
+                document.documentElement[attr] = document.body[attr] = value;
+                return;
+            }
+            return document.documentElement[attr] || document.body[attr];
+        }
+        function $(id) {
+            return document.getElementById(id)
+        }
+        var oImg=document.getElementsByTagName('img')[0];
+        window.onscroll = function () {
+            var scrollBottom = win('scrollTop') + win('clientHeight');
+            var imgPostion =offset(oImg).top+getCss(oImg,'height');
+            if(scrollBottom>=imgPostion){
+                // 执行懒加载
+                lazyImg();
+            }
+        }
+        function lazyImg(){
+            if(oImg.loaded){
+                return;
+            }
+            var tImg=new Image;
+            tImg.src=oImg.getAttribute('imgsrc');
+            tImg.onload=function(){
+                oImg.src=this.src;
+                tImg=null;
+                oImg.load=true;
+            }
+            tImg.onerror=function(){
+                tImg=null;
+                oImg.load=true;
+            }
+        }
+    </script>
+</body>
+
+</html>
