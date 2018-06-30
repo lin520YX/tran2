@@ -1,0 +1,76 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>trans4</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #box {
+        margin: 100px;
+        padding: 30px;
+        width: 200px;
+        height: 200px;
+        border: 10px solid green;
+        line-height: 20px;
+        overflow: auto;
+    }
+</style>
+
+<body>
+    <div id="box" name='zhonghengqiangongzi' class='huanqian'>
+        在六月这个充满情感的月份，我们从6月4日起至6月24日的父爱如山主题征文活动已经正式截止。本次征文共征得110篇优秀文章，认真的看完了所有小伙伴的文章，真的太感动太感人，非常感谢各位商友的参与！
+        在六月这个充满情感的月份，我们从6月4日起至6月24日的父爱如山主题征文活动已经正式截止。本次征文共征得110篇优秀文章，认真的看完了所有小伙伴的文章，真的太感动太感人，非常感谢各位商友的参与！
+
+        在六月这个充满情感的月份，我们从6月4日起至6月24日的父爱如山主题征文活动已经正式截止。本次征文共征得110篇优秀文章，认真的看完了所有小伙伴的文章，真的太感动太感人，非常感谢各位商友的参与！
+        在六月这个充满情感的月份，我们从6月4日起至6月24日的父爱如山主题征文活动已经正式截止。本次征文共征得110篇优秀文章，认真的看完了所有小伙伴的文章，真的太感动太感人，非常感谢各位商友的参与！
+        在六月这个充满情感的月份，我们从6月4日起至6月24日的父爱如山主题征文活动已经正式截止。本次征文共征得110篇优秀文章，认真的看完了所有小伙伴的文章，真的太感动太感人，非常感谢各位商友的参与！
+
+        在六月这个充满情感的月份，我们从6月4日起至6月24日的父爱如山主题征文活动已经正式截止。本次征文共征得110篇优秀文章，认真的看完了所有小伙伴的文章，真的太感动太感人，非常感谢各位商友的参与！
+
+    </div>
+    <script>
+        // js盒子模型是通过js获得css盒子模型的属性
+        function $(id) {
+            return document.getElementById(id)
+        }
+        var k = $('box')
+        console.dir(k)
+        // 私有属性
+        // client:和内容溢出没有关系
+        // clientHeight:contentHeight(height）+paddingTop+paddingbottom;
+        // clientWidth:contentWidth(width)+paddingLeft+paddingRight;
+
+
+        // clientLeft:borderWidth;
+        // clientTop:borderWidth;
+
+        // offset系列:和内容溢出没有关系
+        // offsetWidth:clientWidth+border=contentWidth+padding+border;
+        // offsetParent:当前元素的父级参照物
+        // offsetLeft/offsetTop:当前元素的外边框距离父级参照物的内边框偏移量;
+
+        // scroll
+        // scrollWidth/scrollHeight：和clientWidth/clientHeight（没有溢出）
+        // 存在溢出时:真实内容高度+paddingTop/paddingLeft 约等于：浏览器是否设置overflow:hidden 对结果有影响
+        // 在不同的浏览器中获取到的结果也不相同
+
+        // scrollLeft/scrollTop:卷去的高度/宽度（可读写）
+
+        // 取值：通过属性获取，不会出现小数点
+        // 以上都只能读取属性，不能修改
+        // 存在边界值，如果超出范围，生效的只有边界值
+        // 最小值0；
+        // 真实内容高度-当前容器一屏幕的高度
+        // max= k.scrollHeight-k.clientHeight;
+
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>trans5</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html,body{
+        width: 100%;
+        height: 1000%;
+        background: greenyellow;
+        background: -webkit-linear-gradient(
+            top, #11c900,lightblue,lightcoral,lightgray,lightskyblue,#000,lightpink,lightgoldenrodyellow,#ccc
+        )
+    }
+    #fcd{
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height:50px;
+        background: #ccc;
+        color: #fff;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 50px;
+        display: none;
+    }
+</style>
+
+<body>
+    <a id='fcd'>goTop</a>
+</body>
+<script>
+     function win(attr, value) {
+            if (value!==undefined) {
+                document.documentElement[attr]=document.body[attr]=value;
+                return;
+            }
+            return  document.documentElement[attr] || document.body[attr];
+        }
+     function $(id) {
+            return document.getElementById(id)
+    }
+    window.onscroll=screen;
+    var timer=null;
+    var bOk=false;
+    function screen(){
+        if(bOk){
+            clearInterval(timer)
+        }
+        bOk=true;
+        if( win('scrollTop')>win('clientHeight')){
+            $('fcd').style.display='block';
+       }else{
+             $('fcd').style.display='none';
+       }
+    }
+    $('fcd').onclick=function(){
+        this.style.display='none';
+        // 时长1000ms
+        // 10ms走一次
+        // 总距离scrollTop
+        // 步长10*scrollTop/1000ms
+        window.onscroll=null;
+        var duration=1000;
+        var interval=10;            
+        var target=win('scrollTop')
+        var step=(target/duration)*interval;//10ms走得距离
+        timer=setInterval(()=>{
+            var cur=win('scrollTop');
+            if(cur<step){
+                window.clearInterval(timer)
+                window.onscroll=screen;
+                timer=null;
+                return;
+            }
+            cur-=step;
+            win('scrollTop',cur);
+            bOk=false;
+        },interval)
+    }
+    
+
+    
+</script>
+
+</html>
