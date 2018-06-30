@@ -196,7 +196,7 @@ var utils=(function(){
                 var reg=new RegExp('(^|\\s+)'+strArray[j]+'(|\\s+$)');
                 if(!reg.test(cur.className)){
                     b=false;
-                    break;//结束循环 跳出循环体
+                    break;//结束循环 跳出strArray循环体
                 }
             }
             if(b){
@@ -204,6 +204,23 @@ var utils=(function(){
             }
         }
         return ary
+    }
+    function setCss(curEle,attr,value){
+        if(attr=='float'){
+            curEle.style.styleFloat=value;
+            curEle.style.cssFloat=value;
+            return;
+        }
+        if(attr=='opacity'){
+            curEle.style.opacity=value;
+            curEle.style.fliter='alpha(opacity='+value*100+')';
+            return;
+        }
+        var reg=/(width|height|top|left|right|bottom|((margin|padding)(top|left|right|bottom)))/gi;
+        if(reg.test(attr)){
+                val=parseFloat(value)+'px';
+        }
+        curEle.style[attr]=val;
     }
     return {
         listToArray:listToArray,
@@ -228,6 +245,7 @@ var utils=(function(){
         hasClass:hasClass,
         addClass:addClass,
         removeClass:removeClass,
-        getByClass:getByClass
+        getByClass:getByClass,
+        setCss:setCss
     }
 })()
