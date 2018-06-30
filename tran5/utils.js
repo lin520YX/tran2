@@ -1,3 +1,4 @@
+// chengjiande baba
 var utils=(function(){
     var flag= window.getComputedStyle;
     function listToArray(arg){
@@ -128,6 +129,36 @@ var utils=(function(){
     function index(curEle){
         return this.prevAll(curEle).length;
     }
+    function firstChild(curEle){
+        return this.getChildren(curEle).length>0?this.getChildren(curEle)[0]:null;
+    }
+    function lastChild(curEle){
+        return this.getChildren(curEle).length>0?this.getChildren(curEle)[this.getChildren(curEle).length]:null;
+    }
+    function appendChild(parent,newEle){
+        parent.appendChild(newEle)
+    }
+    function prepend(parent,newEle){
+        var firstChild=this.firstChild(parent);
+        if(firstChild){
+            parent.insertBefore(newEle)
+        }else{
+            parent.appendChild(newEle);
+        }
+    }
+    // 追加到。。。元素之前
+    function insertBefore(newEle,oldEle){
+        oldEle.parentNode.insertBefore(newEle);
+    }
+    //追加到。。。之后
+    function insertAfter(newEle,oldEle){
+        var nex=this.next(oldEle);
+        if(nex){
+            oldEle.parentNode.insertAfter(newEle);
+        }else{
+            oldEle.parentNode.appendChild(newEle)
+        }
+    }
     return {
         listToArray:listToArray,
         jsonParse:jsonParse,
@@ -141,6 +172,12 @@ var utils=(function(){
         nextAll:nextAll,
         sibling:sibling,
         siblings:siblings,
-        index:index
+        index:index,
+        firstChild:firstChild,
+        lastChild:lastChild,
+        appendChild:appendChild,
+        prepend:prepend,
+        insertBefore:insertBefore,
+        insertAfter:insertAfter
     }
 })()
