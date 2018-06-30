@@ -1,0 +1,117 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>trans1</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .box{
+     width: 400px;
+    margin:20px auto;
+
+    }
+    .box ul {
+        /* overflow: hidden; */
+    }
+    .box ul li{
+        float: left;
+        margin-right: 15px;
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        border: 1px solid green;
+        cursor: pointer;
+        list-style: none;
+    }
+    .box ul li.select{
+        background: rgb(140, 164, 243);
+    }   
+    .box div{
+        height: 150px;
+        line-height: 150px;
+        background: lightcoral;
+        text-align: center;
+        border: 1px solid green;
+        clear: both;
+    }
+    .box div.select{
+        background: rgb(140, 164, 243);
+    }  
+</style>
+
+<body>
+        <div class='box' id='tabFir'>
+                <ul id='tabOptions'>
+                    <li >页卡一</li>
+                    <li>页卡二</li>
+                    <li>页卡三</li>
+                </ul>
+                <div >
+                    1
+                </div>
+                <div>内容二</div>
+                <div>内容三</div>
+            </div>
+
+</body>
+<script src="utils.js"></script>
+<script>
+        var box=document.getElementsByClassName('box')
+        
+        !function(){
+                function changeTab(container,defaultIndex){
+                   this.init(container,defaultIndex)
+                }
+                changeTab.prototype={
+                    constructor:changeTab,
+                    init:function(c,i){
+                        
+                        this.c=c;
+                        this.i=i||0;
+                        this.tabFirst=utils.firstChild(this.c);
+                        this.tabLis=utils.getChildren(this.tabFirst)
+                        this.divList=utils.getChildren(this.c,'div');
+                        this.defaultIndexEven();
+                        this.click();
+                    },
+                    click:function(){
+                        var _this=this;
+                        this.tabFirst.onclick=function(e){
+                            // 事件委托
+                            e=e||window.event;
+                            e.target=e.target||e.srcElement;
+                            if(e.target.tagName.toLowerCase()==='li'){
+                                _this.changeClick.call(_this,e.target)
+                            }
+                        }
+                    },
+                    changeClick:function(curEle){
+                        var index=utils.index(curEle);
+                        console.log(curEle)
+                        utils.addClass(curEle,'select');
+                        for(var i=0;i<this.tabLis.length;i++){
+                           i!==index?utils.removeClass(this.tabLis[i],'select'):null;
+                           i==index?utils.addClass(this.divList[i],'select'):utils.removeClass(this.divList[i],'select')
+                        }
+
+                    },
+                    defaultIndexEven:function(){
+                        utils.addClass(this.tabLis[this.i],'select');
+                        utils.addClass(this.divList[this.i],'select')
+                    }
+
+                }
+                window.changeTab=changeTab;
+        }()
+        var box1 = new changeTab(box[0],0)
+
+</script>
+
+</html>
+

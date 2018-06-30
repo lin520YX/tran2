@@ -58,21 +58,23 @@ var utils = (function () {
     function getChildren(curEle, tagName) {
         var ary = [];
         if (flag) {
-            ary = [].slice.call(curEle.children);
+            ary = this.listToArray(curEle.children)
         }
         // ie
-
-        // childNodes 元素的子节点集合：
-        var nodeList = curEle.childNodes;
-        for (var i = 0; i < nodeList.length; i++) {
-            if (nodeList[i].nodeType == 1) {
-                ary.push(nodeList[i])
+        else {
+            // childNodes 元素的子节点集合：
+            var nodeList = curEle.childNodes;
+            for (var i = 0; i < nodeList.length; i++) {
+                if (nodeList[i].nodeType == 1) {
+                    ary.push(nodeList[i])
+                }
             }
+           
         }
         if (typeof tagName == 'string') {
             for (var k = 0; k < ary.length; k++) {
                 var cur = ary[k]
-                if (cur.nodeName.toLowerCase() == tagName.toLowerCase()) {
+                if (cur.nodeName.toLowerCase() !== tagName.toLowerCase()) {
                     ary.splice(k, 1);//方法向/从数组中添加/删除项目，然后返回被删除的项目。
                 }
             }
@@ -160,12 +162,14 @@ var utils = (function () {
         }
     }
     function hasClass(curEle, cName) {
+       
         var cName = cName.replace(/(^\s+)|(\s+$)/, '');
-        var reg = new RegExp('\\b' + cName + '\\b');
+        var reg = new RegExp('(^|\\s+)' + cName + '(|\\s+$)')
+        console.log(curEle)
         return reg.test(curEle.className) ? true : false;
     }
     function addClass(curEle, strClass) {
-        var aryClass = strClass.replace(/(^\s+)|(\s+$)/, '').spilt(/\s+/g);
+        var aryClass = strClass.replace(/(^\s+)|(\s+$)/, '').split(/\s+/g)
         for (var i = 0; i < aryClass.length; i++) {
             if (!hasClass(curEle, aryClass[i])) {
                 return curEle.className += '' + aryClass[i];
@@ -173,7 +177,8 @@ var utils = (function () {
         }
     }
     function removeClass(curEle, strClass) {
-        var aryClass = strClass.replace(/(^\s+)|(\s+$)/, '').spilt(/\s+/g);
+        var aryClass = strClass.replace(/(^\s+)|(\s+$)/, '').split(/\s+/g)
+
         for (var i = 0; i < aryClass.length; i++) {
             var reg = new RegExp('(^|\\s+)' + aryClass[i] + '(|\\s+$)');
             if (hasClass(curEle, aryClass[i])) {
