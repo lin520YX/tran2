@@ -116,6 +116,18 @@ var utils=(function(){
         }
         return ary;
     }
+     // 左右两个兄弟节点
+     function sibling(curEle){
+        var ary=[];
+        return ary.push(this.prev(curEle)||[]).push(this.next(curEle)||[])
+    }
+    // 所有的兄弟节点
+    function siblings(curEle){
+        return this.prevAll(curEle).concat(this.nextAll(curEle))
+    }
+    function index(curEle){
+        return this.prevAll(curEle).length;
+    }
     return {
         listToArray:listToArray,
         jsonParse:jsonParse,
@@ -126,6 +138,9 @@ var utils=(function(){
         prev:prev,
         next:next,
         prevAll:prevAll,
-        nextAll:nextAll
+        nextAll:nextAll,
+        sibling:sibling,
+        siblings:siblings,
+        index:index
     }
 })()
