@@ -1,0 +1,58 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>trans2</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #box{
+        position: absolute;
+        top:0;
+        left: 100px;
+        padding: 0;
+        width: 100px;
+        height: 100px;
+        background: lightgreen;
+    }
+</style>
+
+<body>
+    <script src="utils.js"></script>
+    <div id="box" name='zhonghengqiangongzi' class='huanqian'>
+    </div>
+    <script>
+        function $(id){
+            return document.getElementById(id)
+        }
+        // time,d:总时间,c;总路程，b开始位置
+        // 动画公式；
+        function Linear(t,d,c,b){
+            return t/d*c+b
+        }
+        var maxLeft=utils.win('clientWidth')-$('box').offsetWidth;
+        var begin=utils.css($('box'),'left')
+        var change=maxLeft-begin;
+        var duration=2000;
+        var interval=10;
+        var time=null;
+        var step=(change/duration)*interval;
+        var timer=window.setInterval(()=>{
+           time+=interval;
+           if(time>=duration){
+            utils.css($('box'),'left',maxLeft);
+            window.clearInterval(timer);
+            return;
+           }
+           curLeft=Linear(time,duration,change,begin)
+           utils.css($('box'),'left',curLeft);           
+        },10)
+
+    </script>
+</body>
+
+</html>
