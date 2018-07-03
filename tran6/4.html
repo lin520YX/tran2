@@ -50,9 +50,11 @@
         var maxLeft = utils.win('clientWidth') - $('box').offsetWidth;
         var minLeft = $('box').offsetWidth;
         var step = 5;
-        var timer = null
         function move(i) {
-            window.clearTimeout(timer);
+            window.clearTimeout($('box').timer);
+            _move();
+           function _move(){
+           
             var curLeft = utils.css($('box'), 'left');
             if (i == 1) {
                 if(maxLeft-curLeft<step){
@@ -70,9 +72,8 @@
             } else {
                 return;
             }
-            timer=window.setTimeout(()=>{
-                move(i)
-            },10)
+            $('box').timer=window.setTimeout(_move,10)
+           }
         }
 
         var btn = document.getElementsByClassName('btn');
