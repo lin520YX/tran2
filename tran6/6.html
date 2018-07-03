@@ -1,0 +1,55 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>trans6</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #box {
+        position: absolute;
+        top: 0;
+        left: 100px;
+        padding: 0;
+        width: 100px;
+        height: 100px;
+        background: lightgreen;
+    }
+
+    .btn {
+        position: absolute;
+        top: 300px;
+        left: 100px;
+
+    }
+</style>
+
+<body>
+    <script src="utils.js"></script>
+    <script  src='animation.js'></script>
+    <div id="box" name='zhonghengqiangongzi' class='huanqian'>
+    </div>
+    <hr>
+    <div class="btn">
+        <button>左边</button>
+        <button>右边</button>
+    </div>
+    <script>
+        function $(id) {
+            return document.getElementById(id)
+        }
+          // time,d:总时间,c;总路程，b开始位置
+        // 动画公式；
+        animation($('box'),{left:1000,top:500},1000)
+
+
+
+    </script>
+</body>
+
+</html>
