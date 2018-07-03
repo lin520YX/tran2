@@ -53,27 +53,27 @@
         function move(i) {
             window.clearTimeout($('box').timer);
             _move();
-           function _move(){
-           
-            var curLeft = utils.css($('box'), 'left');
-            if (i == 1) {
-                if(maxLeft-curLeft<step){
-                    utils.css($('box'), 'left', maxLeft)
+            function _move() {
+
+                var curLeft = utils.css($('box'), 'left');
+                if (i == 1) {
+                    if (maxLeft - curLeft < step) {
+                        utils.css($('box'), 'left', maxLeft)
+                        return;
+                    }
+                    curLeft += step;
+                    utils.css($('box'), 'left', curLeft)
+                } else if (i == 0) {
+                    if (curLeft <= 0) {
+                        return;
+                    }
+                    curLeft -= step;
+                    utils.css($('box'), 'left', curLeft)
+                } else {
                     return;
                 }
-                curLeft += step;
-                utils.css($('box'), 'left', curLeft)
-            } else if (i == 0) {
-                if(curLeft<=0){
-                    return;
-                }
-                curLeft -= step;
-                utils.css($('box'), 'left', curLeft)
-            } else {
-                return;
+                $('box').timer = window.setTimeout(_move, 10)
             }
-            $('box').timer=window.setTimeout(_move,10)
-           }
         }
 
         var btn = document.getElementsByClassName('btn');
