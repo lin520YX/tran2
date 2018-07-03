@@ -4,7 +4,7 @@
             return t / d * c + b
         }
     }
-    function move(curEle,targetObj,duration){
+    function move(curEle,targetObj,duration,cb){
         window.clearInterval(curEle.timer)
         var begin={},change={};
         for(var attr in targetObj){
@@ -19,16 +19,15 @@
             if(time>=duration){
                 utils.setGroupCss(curEle,targetObj)
                 window.clearInterval(curEle.timer);
+                cb&&cb()
                 return;
                }
                for(var key in change){
-                var curLeft=obj.Linear(time,duration,change[key],begin[key])
-                var curTop=obj.Linear(time,duration,change[key],begin[key])
+                var cur=obj.Linear(time,duration,change[key],begin[key])
+                utils.css(curEle,key,cur)
                }
-               utils.setGroupCss(curEle,{
-                    left:curLeft,
-                    top:curTop
-                })
+              
+                
         },10)
     }
     window.animation=move;
