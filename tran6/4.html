@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>trans3</title>
+    <title>trans4</title>
 </head>
 <style>
     *{
@@ -36,9 +36,9 @@
         }
         var maxLeft=utils.win('clientWidth')-$('box').offsetWidth;
         var step=5;
-        var timer=window.setInterval(()=>{
+        var timer=null
+        function move(){
             var curLeft=utils.css($('box'),'left');
-         
             if(maxLeft-curLeft<step){
                 window.clearInterval(timer);
                 utils.css($('box'),'left',maxLeft)
@@ -46,9 +46,12 @@
                 return;
             }
             curLeft+=step;
-
             utils.css($('box'),'left',curLeft)
-        },10)
+            timer=setTimeout(move,10)
+        }
+        move();
+       
+       
 
     </script>
 </body>
