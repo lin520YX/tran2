@@ -239,13 +239,15 @@ var utils = (function () {
     }
     function css(curEle) {
         var arg2 = arguments[1];
+        if(arg2.toString()==='[object Object]'){
+            this.setGroupCss.apply(curEle,arg3)
+        }
         if (typeof arg2 === 'string') {
             var arg3 = arguments[2];
-            if (typeof arg3 == 'undefined') {
-                return this.getCss(curEle, arg2);
-            } else {
-                return this.setCss(curEle, arg2, arg3)
+            if(!arg3){
+               return this.getCss(curEle, arg2);
             }
+                this.setCss(curEle,arg2,arg3);
         }
     }
     return {
