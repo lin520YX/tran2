@@ -1,0 +1,14 @@
+[
+  {
+    "img": "bg.jpg"
+  },
+  {
+    "img": "bg.jpg"
+  },
+  {
+    "img": "bg.jpg"
+  },
+  {
+    "img": "bg.jpg"
+  }
+]
