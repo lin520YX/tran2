@@ -97,7 +97,7 @@
     bannerRight.onclick=function(){
         if(step<=0){
             step=count-1;
-            utils.css(inner,'left',-step*1000)
+            utils.css(inner,'left',-st)
         }
         step--;
 

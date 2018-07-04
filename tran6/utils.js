@@ -223,9 +223,9 @@ var utils = (function () {
         }
         var reg = /(width|height|top|left|right|bottom|((margin|padding)(top|left|right|bottom)))/gi;
         if (reg.test(attr)) {
-            val = parseFloat(value) + 'px';
+            value = parseFloat(value) + 'px';
         }
-        curEle.style[attr] = val;
+        curEle.style[attr] = value;
     }
     // 使用Object.prototype.toString.call 来检测对象类型
     function setGroupCss(curEle, obj) {
