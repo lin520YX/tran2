@@ -1,0 +1,60 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jqtrans3</title>
+</head>
+<style>
+    #box {
+        width: 300px;
+        height: 200px;
+        background: #000;
+        padding: 10px;
+    }
+</style>
+
+<body>
+    <div id="box"></div>
+    <div class="container">
+        <div class="inner">h</div>
+        <div class="inner">g</div>
+    </div>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script>
+        // css 获取或者设置当前元素属性值
+        // offset不管父级参照物，获取当前原生的偏移距离
+        // position距离父级参照物的
+
+        // scrollTop/scrollLeft 设置或者获取 卷去高度或者宽度
+        // height
+        // width 
+
+        // innerHeight/innerWidth===clientHeight/clientWidth
+        // 获取或者设置(保留padding)可是区域的宽高
+        // outerHeight()/outerWidth()获取或者设置(保留padding)可是区域的宽高
+        // 如果传递的true 默认计算border-magin
+
+        // jQuery 链条
+
+        // $('#box').append('<ul id="2"></ul>')
+        // // prepend/prependTo//方法在被选元素的开头（仍位于内部）插入指定内容。
+        // $('#box').prepend('<ul id="2"></ul>')
+        // // after 制定元素后面添加元素
+        // // before 指定元素之前添加元素
+        // // insertAfter/insertbefore 在指定元素之后/之前追加元素
+        //     var oDiv = document.createElement('div');
+        //     oDiv.id = 'kkk'
+        //     $(oDiv).insertBefore($('#box'))
+
+        // $('.inner').wrap('<p></p>') 包裹
+        // replaceAll 用匹配的记过替换所有selector匹配的元素
+    //     var oDiv = document.createElement('div');
+            //     oDiv.id = 'kkk'
+            //     $(oDiv).replaceAll('ul')页面中所有的ul被oDiv代替
+//  $('p').detach('.hello') 把p中class是hello的删除
+
+    </script>
+</body>
+
+</html>
