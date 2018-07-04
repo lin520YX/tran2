@@ -1,0 +1,100 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jqtrans1</title>
+</head>
+<style>
+    #box {
+        width: 300px;
+        height: 200px;
+        background: #000;
+        padding: 10px;
+    }
+</style>
+
+<body>
+    <div id="box">
+        13123123
+        <div class="box"></div>
+    </div>
+    <div></div>
+    <ul></ul>
+    <ul class='ul'></ul>
+    <ul></ul>
+    
+   
+    <script src="jquery-1.11.3.min.js"></script>
+    <script>
+        // jQuery常用js 类库主要用于处理兼容问题
+        // id $('#id')
+        // class $('.class');
+        console.log($('#box >.box'))//群主选择器
+        console.log($('#box').innerWidth())//innerWidth() -返回一个元素的内部宽度(包括填充)。
+        // content+padding
+        console.log($('#box').offset().left)
+        console.log($('#box').outerWidth())//content-padding-border
+        console.log($('#box').outerWidth(true))//content-padding-border-magin
+            // jQuery->原生：索引[index] get(0)
+
+
+            // jQuery选择器
+            // *:通用选择器
+            // #id id选择器
+            // 类选择 .class
+            // 元素选择 element
+
+            // .class.class 一个元素上具备这两个样式
+
+            // :first 第一个元素
+            // :last 最后一个
+            // :even 偶数
+            // :odd 奇数
+
+            // :eq(index) 获取第index-1位置的元素
+            // :gt(index) >index 的元素
+            // :lt(index) <index 的元素
+            // :not(selector) 不包含selecttor的元素
+
+            // :header 所有标题元素 h1-h6
+            // :animated 动画元素
+
+            // :contains(text)包含指定字符串的所有元素
+            // :empty 无子（元素）节点的所有元素
+
+            // p:hidden 所有隐藏的p元素
+            // p:visible 所有可见的p元素
+
+            // s1,s2,s3 所有带有匹配选择的元素
+
+            // [attribute]	$("[href]")	所有带有 href 属性的元素
+            // [attribute=value]	$("[href='#']")	所有 href 属性的值等于 "#" 的元素
+            // [attribute!=value]	$("[href!='#']")	所有 href 属性的值不等于 "#" 的元素
+            // [attribute$=value]	$("[href$='.jpg']")	所有 href 属性的值包含以 ".jpg" 结尾的元素
+
+            // :text	$(":text")	所有 type="text" 的 <input> 元素
+            // :input	$(":input")	所有 <input> 元素
+            // :password	$(":password")	所有 type="password" 的 <input> 元素
+            // :radio	$(":radio")	所有 type="radio" 的 <input> 元素
+            // :checkbox	$(":checkbox")	所有 type="checkbox" 的 <input> 元素
+            // :submit	$(":submit")	所有 type="submit" 的 <input> 元素
+            // :reset	$(":reset")	所有 type="reset" 的 <input> 元素
+            // :button	$(":button")	所有 type="button" 的 <input> 元素
+            // :image	$(":image")	所有 type="image" 的 <input> 元素
+            // :file	$(":file")	所有 type="file" 的 <input> 元素
+
+            // :enabled	$(":enabled")	所有激活的 input 元素
+            // :disabled	$(":disabled")	所有禁用的 input 元素
+            // :selected	$(":selected")	所有被选取的 input 元素
+            // :checked	$(":checked")	所有被选中的 input 元素
+
+
+            // + 
+            // $('#box + div') ->[]当前元素下一个的弟弟元素里面查找
+            // $('#box ～ div') ->获取所有的弟弟元素
+
+    </script>
+</body>
+
+</html>

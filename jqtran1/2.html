@@ -1,0 +1,53 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jqtrans2</title>
+</head>
+<style>
+    #box {
+        width: 300px;
+        height: 200px;
+        background: #000;
+        padding: 10px;
+    }
+</style>
+<body>
+    <div id="box"></div>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script>
+        function fn(value){
+            console.log('value'+value)
+        }
+        function fn1(value){
+            console.log('value1'+value)
+        }
+        var $call=$.Callbacks() //毁掉函数的列表集合
+        $call.add(fn1)//向集合中添加一个fn1的函数.移除一个函数
+        $call.fire(1000)
+        console.log('~~~~~')
+        $call.add(fn)//向集合中添加一个fn1的函数.移除一个函数
+        $call.fire(2000)
+
+
+        // $(function(){
+
+        // })
+        // ||
+        // ||
+        // $(document).ready(function(){
+
+        // })
+        // window.onload=function(){
+
+        // }
+
+        // prop设置属性 removeProp 内置
+        // attr设置属性 removeAttr 自定义
+        $('#box').prop('class','w').removeClass('w')
+        console.log($('.w'))
+    </script>
+</body>
+
+</html>
