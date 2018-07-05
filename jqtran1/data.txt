@@ -1,14 +1,6 @@
 [
-  {
-    "img": "bg.jpg"
-  },
-  {
-    "img": "bg.jpg"
-  },
-  {
-    "img": "bg.jpg"
-  },
-  {
-    "img": "bg.jpg"
-  }
+{"img":"//img.alicdn.com/tps/i3/TB13LNGMXXXXXcBXpXXlkjU.VXX-346-200.jpg","tce_rule_count":"1","link":"https://pages.tmall.com/wow/huanxin/act/mustbuy"},
+{"img":"//img.alicdn.com/tps/i2/TB1TaNBMXXXXXcBXFXXlkjU.VXX-346-200.jpg","tce_rule_count":"1","link":"https://shouji.tmall.com/"},
+{"img":"//img.alicdn.com/tps/i4/TB1_1BLMXXXXXb3XXXXlkjU.VXX-346-200.jpg","tce_rule_count":"1","link":"https://ku.tmall.com/"},
+{"img":"//img.alicdn.com/tps/i3/TB1OK4CMXXXXXboXFXXlkjU.VXX-346-200.jpg","tce_rule_count":"1","link":"https://miao.m.tmall.com/"}
 ]

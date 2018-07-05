@@ -1,0 +1,240 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jqtrans4</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        color: #424242;
+        -webkit-user-select: none;
+    }
+
+    ul, li {
+        list-style: none;
+    }
+
+    img {
+        display: block;
+        border: none;
+    }
+
+    a, a:hover, a:active, a:target, a:visited {
+        text-decoration: none;
+        color: #424242;
+    }
+
+    .banner {
+        position: relative;
+        width: 1000px;
+        height: 300px;
+        margin: 10px auto;
+        overflow: hidden;
+    }
+
+    .banner .bannerInner {
+        width: 100%;
+        height: 100%;
+        background: url("default.gif") no-repeat center center #d1d1d1;
+    }
+
+    .banner .bannerInner > div {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+
+    .banner .bannerInner > div > img {
+        width: 100%;
+        height: 100%;
+        display: none;
+    }
+
+    .banner .bannerTip {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        height: 18px;
+        overflow: hidden;
+        z-index: 10;
+    }
+
+    .banner .bannerTip li {
+        height: 18px;
+        width: 18px;
+        background: lightblue;
+        border-radius: 50%;
+        margin-right: 10px;
+        float: left;
+    }
+
+    .banner .bannerTip li.bg {
+        background: orange;
+    }
+
+    .banner a {
+        width: 30px;
+        height: 45px;
+        position: absolute;
+        top: 50%;
+        z-index: 10;
+        margin-top: -22.5px;
+        opacity: .5;
+        background: url("pre.png");
+    }
+
+    .banner a:hover {
+        opacity: 1;
+    }
+
+    .banner a.bannerLeft {
+        left: 20px;
+        background-position: 0 0;
+    }
+
+    .banner a.bannerRight {
+        right: 20px;
+        background-position: -50px 0;
+    }
+
+</style>
+
+<body>
+<div class="banner" id="bannerFir">
+    <div class="bannerInner">
+
+    </div>
+    <ul class="bannerTip">
+
+    </ul>
+    <a href="javascript:;" class="bannerLeft"></a>
+    <a href="javascript:;" class="bannerRight"></a>
+</div>
+
+<script src="jquery-1.11.3.min.js"></script>
+<script>
+    $(function () {
+        var $banner = $('#bannerFir');
+        var $bannerInner = $('.bannerInner', $banner);
+        var $bannerTip = $('.bannerTip', $banner);
+
+        var $bannerLeft = $banner.children('.bannerLeft');
+        var $bannerRight = $banner.children('.bannerRight');
+
+        var $divList = null;
+        var $imgList = null;
+        var $oLis = null;
+
+        var jsonData = null
+//        读取数据
+        $.ajax({
+            url: 'data.txt?_=' + Math.random(),
+            type: 'get',
+            dataType: 'json',
+            async: false,//tongbu
+            success: function (data) {
+                jsonData = data
+            }
+        })
+//        bindData
+        bindData();
+
+        function bindData() {
+            var str = '', str2 = '';
+            $.each(jsonData, function (index, item) {
+                str += "<div><img src='' trueImg='" + item['img'] + "'></div>";
+                index == 0 ? str2 += '<li class="bg"></li>' : str2 += '<li></li>';
+            })
+            $bannerInner.html(str);
+            $bannerTip.html(str2);
+
+//    jQuery dom映射机制 注意
+            $divList = $bannerInner.children('div');
+            $imgList = $bannerInner.find('img');
+            $oLis = $bannerTip.children('li');
+        }
+
+        window.setTimeout(lazyImg, 500);
+
+        function lazyImg() {
+            $imgList.each(function (index, item) {
+                var _this=this
+                var oImg = new Image;
+                oImg.src = $(this).attr('trueImg');
+                oImg.onload = function () {
+                    $(_this).prop('src', this.src).css({
+                        display: 'block'
+                    })
+
+                }
+            });
+//            结束懒加载 第一张显示
+            $divList.eq(0).css({
+                zIndex:1
+            }).animate({opacity:1},300)
+        }
+
+//        实现自动轮播
+        var interval=3000;
+        var step=0;
+        var autoTimer=null;
+        autoTimer=window.setInterval(autoMove,interval)
+        function autoMove(){
+            if(step==jsonData.length-1){
+                step=-1;
+            }
+            step++;
+            changeBanner();
+        }
+        function changeBanner(){
+            var $curDiv= $divList.eq(step);
+            var $curLi=$oLis.eq(step)
+            $curDiv.css({
+                zIndex:1
+            }).siblings().css({
+                zIndex:0
+            })
+            $curDiv.animate({opacity:1},300,function(){
+                $(this).siblings().css('opacity',0)
+            })
+            $curLi.addClass('bg').siblings().removeClass('bg');
+        }
+//        控制左右按钮的显示
+        $banner.on('mouseover',function(){
+            window.clearInterval(autoTimer);
+            $bannerRight.css({display:'block'});
+            $bannerLeft.css({display:'block'})
+        }).on('mouseout',function(){
+            autoTimer=window.setInterval(autoMove,interval)
+            $bannerRight.css({display:'none'});
+            $bannerLeft.css({display:'none'})
+        })
+//        控制
+        $oLis.on('click',function(){
+            step=$(this).index();
+            changeBanner()
+        })
+        $bannerRight.on('click',function(){
+            autoMove();
+        })
+        $bannerLeft.on('click',function(){
+            if(step==0){
+                step=jsonData.length
+            }
+            step--;
+            changeBanner()
+        })
+    })
+</script>
+</body>
+
+</html>
