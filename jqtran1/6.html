@@ -1,0 +1,76 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>jq6</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 50px;
+            color: white;
+        }
+
+        input {
+            float: left;
+            width: 150px;
+            height: 40px;
+        }
+
+        .box {
+            width: 450px;
+            height: 200px;
+        }
+
+        .box div {
+            width: 100%;
+            height: 100%;
+            background: lightblue;
+            display: none;
+        }
+
+        .box div.show {
+            display: block;
+        }
+
+        input.bg {
+            background: lightblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box1">
+        <input type="button" value="按钮1" class="bg" />
+        <input type="button" value="按钮2" />
+        <input type="button" value="按钮3" />
+        <div class="show">内容1</div>
+        <div>内容2</div>
+        <div>内容3</div>
+    </div>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script>
+
+
+        function tabChange(sel) {
+            var $input = $(sel).find('input');
+            var $div = $(sel).find('div');
+            $input.on('click', function () {
+                $(this).addClass('bg').siblings().removeClass('bg')
+                var _index = $(this).index()
+                $div.each(function (index, item) {
+                    if (index == _index) {
+                        $(item).addClass('show')
+                    } else {
+                        $(item).removeClass('show')
+                    }
+                })
+            })
+        }
+    </script>
+
+</html>
