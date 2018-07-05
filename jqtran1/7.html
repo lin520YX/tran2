@@ -122,8 +122,12 @@
 
 <script src="jquery-1.11.3.min.js"></script>
 <script>
-    $(function () {
-        var $banner = $('#bannerFir');
+    jQuery.extend({
+        banner:chengjianBanner
+    });
+    $.banner($('#bannerFir'),'data.txt',3000)
+    function chengjianBanner(container,url,interval) {
+        var $banner = container;
         var $bannerInner = $('.bannerInner', $banner);
         var $bannerTip = $('.bannerTip', $banner);
 
@@ -137,7 +141,7 @@
         var jsonData = null
 //        读取数据
         $.ajax({
-            url: 'data.txt?_=' + Math.random(),
+            url: url+'?_=' + Math.random(),
             type: 'get',
             dataType: 'json',
             async: false,//tongbu
@@ -167,7 +171,7 @@
 
         function lazyImg() {
             $imgList.each(function (index, item) {
-                var _this=this
+                var _this = this
                 var oImg = new Image;
                 oImg.src = $(this).attr('trueImg');
                 oImg.onload = function () {
@@ -179,61 +183,64 @@
             });
 //            结束懒加载 第一张显示
             $divList.eq(0).css({
-                zIndex:1
-            }).animate({opacity:1},300)
+                zIndex: 1
+            }).animate({opacity: 1}, 300)
         }
 
 //        实现自动轮播
-        var interval=3000;
-        var step=0;
-        var autoTimer=null;
-        autoTimer=window.setInterval(autoMove,interval)
-        function autoMove(){
-            if(step==jsonData.length-1){
-                step=-1;
+        var interval = interval;
+        var step = 0;
+        var autoTimer = null;
+        autoTimer = window.setInterval(autoMove, interval)
+
+        function autoMove() {
+            if (step == jsonData.length - 1) {
+                step = -1;
             }
             step++;
             changeBanner();
         }
-        function changeBanner(){
-            var $curDiv= $divList.eq(step);
-            var $curLi=$oLis.eq(step)
+
+        function changeBanner() {
+            var $curDiv = $divList.eq(step);
+            var $curLi = $oLis.eq(step)
             $curDiv.css({
-                zIndex:1
+                zIndex: 1
             }).siblings().css({
-                zIndex:0
+                zIndex: 0
             })
-            $curDiv.animate({opacity:1},300,function(){
-                $(this).siblings().css('opacity',0)
+            $curDiv.animate({opacity: 1}, 300, function () {
+                $(this).siblings().css('opacity', 0)
             })
             $curLi.addClass('bg').siblings().removeClass('bg');
         }
+
 //        控制左右按钮的显示
-        $banner.on('mouseover',function(){
+        $banner.on('mouseover', function () {
             window.clearInterval(autoTimer);
-            $bannerRight.css({display:'block'});
-            $bannerLeft.css({display:'block'})
-        }).on('mouseout',function(){
-            autoTimer=window.setInterval(autoMove,interval)
-            $bannerRight.css({display:'none'});
-            $bannerLeft.css({display:'none'})
+            $bannerRight.css({display: 'block'});
+            $bannerLeft.css({display: 'block'})
+        }).on('mouseout', function () {
+            autoTimer = window.setInterval(autoMove, interval)
+            $bannerRight.css({display: 'none'});
+            $bannerLeft.css({display: 'none'})
         })
 //        控制
-        $oLis.on('click',function(){
-            step=$(this).index();
+        $oLis.on('click', function () {
+            step = $(this).index();
             changeBanner()
         })
-        $bannerRight.on('click',function(){
+        $bannerRight.on('click', function () {
             autoMove();
         })
-        $bannerLeft.on('click',function(){
-            if(step==0){
-                step=jsonData.length
+        $bannerLeft.on('click', function () {
+            if (step == 0) {
+                step = jsonData.length
             }
             step--;
             changeBanner()
         })
-    })
+    }
 </script>
 </body>
 
