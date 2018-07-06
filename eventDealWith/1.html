@@ -1,0 +1,48 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>event1</title>
+</head>
+<style>
+  #box{
+      width: 200px;
+      height: 200px;
+      background: red;
+  }
+</style>
+    <div id="box">
+
+    </div>
+<body>
+
+    <script>
+        // event
+        // 行为本身 onclic onmouseover onmouseenter onmouseout......没有绑定默认行为，没有行动力
+        // 事件绑定：给某个元素绑定方法
+        // var box=document.getElementById('box');
+        // dom2级事件绑定
+        // box.addEventListener('click',function(){
+        //     console.log(1)
+        // })
+        // addEventListener定义在当前属性的eventTarget 类的原型上
+    
+        // box.onclick=function(e){
+        //  e(MouseEvent) 记录页面中唯一一个鼠标每一次触发的信息
+        //     // 浏览器默认传值 ->鼠标事件对象->对象数据类型的值,记录当前鼠标信息
+        //    MouseEvent->UiEvent->event->Object
+        // }
+
+        // 兼容处理
+        box.onclick=function(e){
+            var e=e||window.event;//MSIE 6-8
+            // e.clientX|Y  距离当前窗口的距离
+            // e.type //行为类型
+            // 事件对象
+        }
+
+    </script>
+</body>
+
+</html>
