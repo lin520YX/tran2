@@ -1,0 +1,81 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>event3</title>
+</head>
+<style>
+    body,div{
+        margin: 0;
+        padding:0;
+    }
+    html,body{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+ #outer{
+    margin: 20px auto;
+    padding: 20px;
+    width: 300px;
+    height: 300px;
+    background: green;
+ }
+ #inner{
+    padding: 20px;
+    width: 200px;
+    height: 200px;
+    background: red;
+ }
+ #center{
+    width: 100px;
+    height: 100px;
+    background: yellow;
+ }
+</style>
+<body>
+    <div id="outer">
+        <div id="inner">
+            <div id="center"></div>
+        </div>
+    </div>
+    <script>
+        // 理解事件的传播机制
+        // 补货 document->>>>>>>
+        // 目标
+        // 冒泡 element->>>>document
+        function $(id){
+            return document.getElementById(id)
+        }
+        var outer=$('outer');
+        var inner=$('inner');
+        var center=$('center');
+        // document.body.onclick=function(e){
+        //     e.stopPropagation?e.stopPropagation():e.cancelBubble=true;
+        //     console.log('body')
+        // }
+        outer.onclick=function(e){
+            e.stopPropagation?e.stopPropagation():e.cancelBubble=true;
+            console.log('outer')
+        }
+        inner.onclick=function(e){
+            e.stopPropagation?e.stopPropagation():e.cancelBubble=true;
+            console.log('inner')
+        }
+        center.onclick=function(e){
+            e.stopPropagation?e.stopPropagation():e.cancelBubble=true;
+            console.log('center')
+        }
+
+
+
+// 第一个参数行为，第二个参数方法，第三个参数指代发生阶段，true补货 false maotao
+        document.body.addEventListener('click',function(){
+            console.log('body')
+        },false)
+
+    </script>
+</body>
+
+</html>

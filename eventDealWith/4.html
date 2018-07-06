@@ -1,0 +1,73 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>event4</title>
+</head>
+<style>
+ *{
+            margin:0;
+            padding:0;
+        }
+        .box{
+            width: 640px;
+            margin:30px auto;
+            position: relative;
+        }
+        .box img{
+            width: 150px;
+            margin-left: 10px;
+            float: left;
+        }
+        #mark{
+            display: none;
+            position: absolute;
+            left:0;
+            top:0;
+            width: 450px;
+        }
+        #mark img{
+            width: 100%;
+        }
+</style>
+<body>
+        <div class="box">
+                <img src="img/apple_1.jpg" realImg="img/apple_1_bigger.jpg" alt=""/>
+                <img src="img/apple_2.jpg" realImg="img/apple_2_bigger.jpg" alt=""/>
+                <img src="img/apple_3.jpg" realImg="img/apple_3_bigger.jpg" alt=""/>
+                <img src="img/apple_4.jpg" realImg="img/apple_4_bigger.jpg" alt=""/>
+            
+                <div id="mark"><img src="img/apple_1_bigger.jpg" alt=""/></div>
+            </div>
+            <script src="jquery-1.11.3.min.js"></script>
+            <script >
+                var $box=$('.box');
+                var $imgList=$box.children('img');
+                var $mark=$('#mark');
+                var offset=$box.offset();
+                $imgList.mouseover(function(e){
+                        var left=e.clientX-offset.left+1;
+                        var top=e.clientY-offset.top+1;
+                        var realImg=$(this).attr('realImg');
+                        $mark.stop().show(500).css({
+                            left:left,
+                            top:top
+                        }).find('img').attr('src',realImg)
+                })
+                $imgList.mousemove(function(e){
+                        var left=e.clientX-offset.left+1;
+                        var top=e.clientY-offset.top+1;
+                        $mark.css({
+                            left:left,
+                            top:top
+                        })
+                })
+                $imgList.mouseout(function(){
+                    $mark.stop().hide()
+                })
+                
+            </script>
+</body>
+
+</html>
