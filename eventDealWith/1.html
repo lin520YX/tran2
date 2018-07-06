@@ -37,8 +37,10 @@
         // 兼容处理
         box.onclick=function(e){
             var e=e||window.event;//MSIE 6-8
+            e.target=e.target||e.srcElement;
             // e.clientX|Y  距离当前窗口的距离
             // e.type //行为类型
+            // e.target||e.srcElement ⌚️源 ，当前鼠标触发的原元素，并存；
             // 事件对象
         }
 

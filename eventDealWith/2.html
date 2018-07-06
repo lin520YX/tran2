@@ -1,0 +1,76 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>event1</title>
+</head>
+<style>
+  body,div,ul,li,a{
+     margin: 0;
+     padding: 0;
+  }
+  a{
+      display: block;
+  }
+  ul,li{
+    list-style: none;
+  }
+  #ul{
+      width: 300px;
+      margin: 20 auto;
+  }
+  #ul > li{
+    height: 35px;
+    line-height: 35px;
+    border-bottom: 1px solid green;
+  }
+  #ul > li>a{
+    height: 35px;
+    line-height: 35px;
+  }
+  /* hover ie6->x */
+  /* 只有a的味蕾 */
+  #ul > li>a:hover{
+      background: lightcoral;
+  }
+</style>
+<body>
+<a href="http://www.baidu.com"></a>
+<!-- 处理a默认 -->
+<!-- 1):javascript:;
+2):javascript:void 0;
+3):javascript:void 1; -->
+<!-- <ul id='ul'>
+    <li><a href="javascript:;">1</a></li>
+    <li><a href="javascript:;">1</a></li>
+    <li><a href="javascript:;">1</a></li>
+    <li><a href="javascript:;">1</a></li>
+</ul> -->
+
+<ul id='ul'>
+        <li><a href="#">1</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">1</a></li>
+</ul>
+    <script>
+        var oLis=document.getElementsByTagName('a');
+        for(var i=0;i<oLis.length;i++){
+            (function(i){
+                    oLis[i].onclick=function(e){
+                        var e=e||window.event;
+                        e.target=e.target||e.srcElement;
+                        e.pageX=e.pageX||(e.clientX+(document.documentElement.scrollLeft||document.body.scrollLeft))
+                        e.stopPropagation?e.stopPropagation():e.cancelBubble=true;//冒泡
+                        // e.preventDefault?e.preventDefault():e.returnValue=false
+                        //   ||
+                        // return false;//两种方式都是阻止默认行为
+                    }
+            })(i)
+        }
+
+    </script>
+</body>
+
+</html>
